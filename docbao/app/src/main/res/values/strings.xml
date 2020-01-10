@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">docbao</string>
+    <string name="title_activity_list_content">ListContentActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">VNEXPRESS</string>
+    <string name="nav_header_subtitle">Báo tiếng Việt nhiều người xem nhất</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_the_gioi">Thế Giới</string>
+    <string name="menu_trang_chu">Trang Chủ</string>
+    <string name="menu_kinh_doanh">Kinh Doanh</string>
+    <string name="menu_phap_luat">Pháp Luật</string>
+    <string name="menu_the_thao">Thể Thao</string>
+    <string name="menu_du_lich">Du Lịch</string>
+
+    <string-array name="text">
+        <item>VNEXPRESS</item>
+        <item>Cập Nhật Cùng Bạn Đọc</item>
+    </string-array>
+
+</resources>
