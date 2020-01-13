@@ -1,12 +1,14 @@
 package com.hiepsummer.docbao.ui.home;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hiepsummer.docbao.Adapter;
+import com.hiepsummer.docbao.DetailsActivity;
 import com.hiepsummer.docbao.DocBao;
 import com.hiepsummer.docbao.ListContentActivity;
 import com.hiepsummer.docbao.MainActivity;
@@ -97,6 +100,15 @@ public class HomeFragment extends Fragment {
             adapter = new Adapter(getActivity(), android.R.layout.simple_list_item_1, mangDocBao);
             listView.setAdapter(adapter);
 
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                    Toast.makeText(getActivity(), mangDocBao.get(position).link, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                    intent.putExtra("link", mangDocBao.get(position).link);
+                    startActivity(intent);
+                }
+            });
             super.onPostExecute(s);
 
         }
@@ -134,6 +146,7 @@ public class HomeFragment extends Fragment {
                 new ReadData().execute("https://vnexpress.net/rss/tin-moi-nhat.rss");
             }
         });
+
     }
 
 }

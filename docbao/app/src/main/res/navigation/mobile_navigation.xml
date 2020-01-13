@@ -12,32 +12,34 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_thegioi"
         android:name="com.hiepsummer.docbao.ui.world.WorldFragment"
         android:label="@string/menu_the_gioi"
         tools:layout="@layout/fragment_world" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_kinhdoanh"
         android:name="com.hiepsummer.docbao.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_kinh_doanh"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_thegioi" />
 
     <fragment
-        android:id="@+id/nav_tools"
+        android:id="@+id/nav_phapluat"
         android:name="com.hiepsummer.docbao.ui.tools.ToolsFragment"
         android:label="@string/menu_phap_luat"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_phapluat" />
 
     <fragment
-        android:id="@+id/nav_share"
+        android:id="@+id/nav_thethao"
         android:name="com.hiepsummer.docbao.ui.share.ShareFragment"
         android:label="@string/menu_the_thao"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_thethao" />
 
     <fragment
-        android:id="@+id/nav_send"
+        android:id="@+id/nav_dulich"
         android:name="com.hiepsummer.docbao.ui.send.SendFragment"
         android:label="@string/menu_du_lich"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_dulich" />
+
+
 </navigation>

@@ -6,32 +6,40 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/address"
             android:title="@string/menu_trang_chu" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_thegioi"
+            android:icon="@drawable/internet"
             android:title="@string/menu_the_gioi" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_kinhdoanh"
+            android:icon="@drawable/cryptocurrency"
             android:title="@string/menu_kinh_doanh" />
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_phapluat"
+            android:icon="@drawable/law"
             android:title="@string/menu_phap_luat" />
     </group>
 
     <item android:title="Giải Trí">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:id="@+id/nav_thethao"
+                android:icon="@drawable/sport"
                 android:title="@string/menu_the_thao" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:id="@+id/nav_dulich"
+                android:icon="@drawable/internet"
                 android:title="@string/menu_du_lich" />
+            <item
+                android:id="@+id/nav_suckhoe"
+                android:icon="@drawable/heart"
+                android:title="@string/menu_suckhoe" />
+            <item
+                android:id="@+id/nav_cuoi"
+                android:icon="@drawable/smile"
+                android:title="@string/menu_cuoi" />
         </menu>
     </item>
 
