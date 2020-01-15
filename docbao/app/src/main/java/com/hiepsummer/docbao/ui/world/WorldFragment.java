@@ -13,10 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.hiepsummer.docbao.Adapter;
-import com.hiepsummer.docbao.DocBao;
+import com.hiepsummer.docbao.BaiBao;
 import com.hiepsummer.docbao.R;
 import com.hiepsummer.docbao.XMLDOMParser;
-import com.hiepsummer.docbao.ui.home.HomeFragment;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -34,7 +33,7 @@ public class WorldFragment extends Fragment {
 
     ListView listView;
     Adapter adapter;
-    ArrayList<DocBao> mangDocBao;
+    ArrayList<BaiBao> mangDocBao;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class WorldFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_world, container, false);
 
         listView = root.findViewById(R.id.listWorld);
-        mangDocBao = new ArrayList<DocBao>();
+        mangDocBao = new ArrayList<BaiBao>();
         return root;
     }
 
@@ -83,7 +82,7 @@ public class WorldFragment extends Fragment {
                 Element element = (Element) nodeList.item(i);
                 title = parser.getValue(element, "title");
                 link = parser.getValue(element, "link");
-                mangDocBao.add(new DocBao(title, link, img));
+                mangDocBao.add(new BaiBao(title, link, img));
             }
             adapter = new Adapter(getActivity(), android.R.layout.simple_list_item_1, mangDocBao);
             listView.setAdapter(adapter);

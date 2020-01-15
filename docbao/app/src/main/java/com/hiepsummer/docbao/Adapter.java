@@ -1,7 +1,6 @@
 package com.hiepsummer.docbao;
 
 import android.content.Context;
-import android.graphics.Movie;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,12 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Adapter extends ArrayAdapter<DocBao> {
+public class Adapter extends ArrayAdapter<BaiBao> {
     private Context mContext;
-    private List<DocBao> moviesList ;
+    private ArrayList<BaiBao> moviesList;
 
-    public Adapter(Context context, int resource, ArrayList<DocBao> items) {
+    public Adapter(Context context, int resource, ArrayList<BaiBao> items) {
         super(context, resource, items);
         mContext = context;
         moviesList = items;
@@ -37,7 +35,7 @@ public class Adapter extends ArrayAdapter<DocBao> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.item, null);
         }
-        DocBao docBao = getItem(position);
+        BaiBao docBao = getItem(position);
         if (docBao != null) {
             // Anh xa + Gan gia tri
             TextView txttitle = view.findViewById(R.id.textViewTitle);
@@ -46,8 +44,11 @@ public class Adapter extends ArrayAdapter<DocBao> {
             ImageView imageView = view.findViewById(R.id.imageViewThumb);
             Picasso.with(getContext()).load(docBao.img).into(imageView);
 
+
         }
         return view;
     }
+
+
 
 }
