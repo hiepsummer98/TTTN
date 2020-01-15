@@ -1,11 +1,13 @@
 package com.hiepsummer.docbao.ui.world;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.hiepsummer.docbao.Adapter;
-import com.hiepsummer.docbao.BaiBao;
+import com.hiepsummer.docbao.New;
+import com.hiepsummer.docbao.DetailsActivity;
 import com.hiepsummer.docbao.R;
 import com.hiepsummer.docbao.XMLDOMParser;
 
@@ -33,7 +36,7 @@ public class WorldFragment extends Fragment {
 
     ListView listView;
     Adapter adapter;
-    ArrayList<BaiBao> mangDocBao;
+    ArrayList<New> mangDocBao;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class WorldFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_world, container, false);
 
         listView = root.findViewById(R.id.listWorld);
-        mangDocBao = new ArrayList<BaiBao>();
+        mangDocBao = new ArrayList<New>();
         return root;
     }
 
@@ -49,12 +52,9 @@ public class WorldFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         runOnUIThread();
-
-
     }
 
     class ReadData extends AsyncTask<String, Integer, String> {
-
         @Override
         protected String doInBackground(String... strings) {
             return docNoiDung_Tu_URL(strings[0]);
@@ -62,12 +62,12 @@ public class WorldFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String s) {
-//            Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
             XMLDOMParser parser = new XMLDOMParser();
             Document document = parser.getDocument(s);
             NodeList nodeList = document.getElementsByTagName("item");
             String title = "";
             String link = "";
+            String pubDate = "";
             NodeList nodeListdescription = document.getElementsByTagName("description");
             String img = "";
 
@@ -82,10 +82,22 @@ public class WorldFragment extends Fragment {
                 Element element = (Element) nodeList.item(i);
                 title = parser.getValue(element, "title");
                 link = parser.getValue(element, "link");
-                mangDocBao.add(new BaiBao(title, link, img));
+                pubDate = parser.getValue(element, "pubDate");
+
+                mangDocBao.add(new New(title, link, img, pubDate));
             }
             adapter = new Adapter(getActivity(), android.R.layout.simple_list_item_1, mangDocBao);
             listView.setAdapter(adapter);
+
+            //action ClickListener
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                    intent.putExtra("link", mangDocBao.get(position).link);
+                    startActivity(intent);
+                }
+            });
 
             super.onPostExecute(s);
 
@@ -95,18 +107,10 @@ public class WorldFragment extends Fragment {
     private String docNoiDung_Tu_URL(String theUrl) {
         StringBuilder content = new StringBuilder();
         try {
-            // create a url object
             URL url = new URL(theUrl);
-
-            // create a urlconnection object
             URLConnection urlConnection = url.openConnection();
-
-            // wrap the urlconnection in a bufferedreader
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-
             String line;
-
-            // read from the urlconnection via the bufferedreader
             while ((line = bufferedReader.readLine()) != null) {
                 content.append(line + "\n");
             }

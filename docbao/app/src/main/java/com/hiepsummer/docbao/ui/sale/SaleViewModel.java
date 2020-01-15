@@ -1,16 +1,15 @@
-package com.hiepsummer.docbao.ui.tools;
+package com.hiepsummer.docbao.ui.sale;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ToolsViewModel extends ViewModel {
+public class SaleViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ToolsViewModel() {
+    public SaleViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
     }
 
     public LiveData<String> getText() {

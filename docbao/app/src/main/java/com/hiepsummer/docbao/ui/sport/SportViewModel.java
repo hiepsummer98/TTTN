@@ -1,16 +1,15 @@
-package com.hiepsummer.docbao.ui.send;
+package com.hiepsummer.docbao.ui.sport;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SendViewModel extends ViewModel {
+public class SportViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SendViewModel() {
+    public SportViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is send fragment");
     }
 
     public LiveData<String> getText() {

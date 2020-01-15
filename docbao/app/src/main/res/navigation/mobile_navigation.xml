@@ -19,25 +19,25 @@
 
     <fragment
         android:id="@+id/nav_kinhdoanh"
-        android:name="com.hiepsummer.docbao.ui.slideshow.SlideshowFragment"
+        android:name="com.hiepsummer.docbao.ui.sale.SaleFragment"
         android:label="@string/menu_kinh_doanh"
-        tools:layout="@layout/fragment_thegioi" />
+        tools:layout="@layout/fragment_sale" />
 
     <fragment
         android:id="@+id/nav_phapluat"
-        android:name="com.hiepsummer.docbao.ui.tools.ToolsFragment"
+        android:name="com.hiepsummer.docbao.ui.law.LawFragment"
         android:label="@string/menu_phap_luat"
-        tools:layout="@layout/fragment_phapluat" />
+        tools:layout="@layout/fragment_law" />
 
     <fragment
         android:id="@+id/nav_thethao"
-        android:name="com.hiepsummer.docbao.ui.share.ShareFragment"
+        android:name="com.hiepsummer.docbao.ui.sport.SportFragment"
         android:label="@string/menu_the_thao"
         tools:layout="@layout/fragment_thethao" />
 
     <fragment
         android:id="@+id/nav_dulich"
-        android:name="com.hiepsummer.docbao.ui.send.SendFragment"
+        android:name="com.hiepsummer.docbao.ui.travel.TravelFragment"
         android:label="@string/menu_du_lich"
         tools:layout="@layout/fragment_dulich" />
 

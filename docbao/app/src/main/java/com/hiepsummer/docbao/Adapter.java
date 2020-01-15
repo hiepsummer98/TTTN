@@ -1,6 +1,7 @@
 package com.hiepsummer.docbao;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class Adapter extends ArrayAdapter<BaiBao> {
+public class Adapter extends ArrayAdapter<New> {
     private Context mContext;
-    private ArrayList<BaiBao> moviesList;
+    private ArrayList<New> moviesList;
 
-    public Adapter(Context context, int resource, ArrayList<BaiBao> items) {
+    public Adapter(Context context, int resource, ArrayList<New> items) {
         super(context, resource, items);
         mContext = context;
         moviesList = items;
@@ -35,20 +36,29 @@ public class Adapter extends ArrayAdapter<BaiBao> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.item, null);
         }
-        BaiBao docBao = getItem(position);
-        if (docBao != null) {
-            // Anh xa + Gan gia tri
-            TextView txttitle = view.findViewById(R.id.textViewTitle);
-            txttitle.setText(docBao.title);
 
-            ImageView imageView = view.findViewById(R.id.imageViewThumb);
-            Picasso.with(getContext()).load(docBao.img).into(imageView);
+        try {
+            New baibao = getItem(position);
+            if (baibao != null) {
+                // Anh xa + Gan gia tri
+                TextView txttitle = view.findViewById(R.id.textViewTitle);
+                TextView txtPubdate = view.findViewById(R.id.textViewPublicDate);
+                txttitle.setText(baibao.title);
+                txtPubdate.setText(baibao.pubDate);
 
+                ImageView imageView = view.findViewById(R.id.imageViewThumb);
+                if (baibao.img.isEmpty()) {
+                    imageView.setImageResource(R.drawable.logo);
+                } else {
+                    Picasso.with(getContext()).load(baibao.img).into(imageView);
+                }
 
+            }
+        } catch (Exception e) {
+            Log.e("error ", "error is: " + e);
         }
         return view;
     }
-
 
 
 }

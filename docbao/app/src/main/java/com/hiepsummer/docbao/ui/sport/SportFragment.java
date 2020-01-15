@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao.ui.home;
+package com.hiepsummer.docbao.ui.sport;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hiepsummer.docbao.Adapter;
@@ -20,6 +22,7 @@ import com.hiepsummer.docbao.DetailsActivity;
 import com.hiepsummer.docbao.New;
 import com.hiepsummer.docbao.R;
 import com.hiepsummer.docbao.XMLDOMParser;
+import com.hiepsummer.docbao.ui.home.HomeFragment;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -33,21 +36,21 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HomeFragment extends Fragment {
+public class SportFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private SportViewModel sportViewModel;
     ListView listView;
     Adapter adapter;
     ArrayList<New> mangDocBao;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        sportViewModel =
+                ViewModelProviders.of(this).get(SportViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_thethao, container, false);
 
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-
-        listView = root.findViewById(R.id.listViewHome);
+        listView = root.findViewById(R.id.listViewTheThao);
         mangDocBao = new ArrayList<New>();
         return root;
     }
@@ -83,7 +86,6 @@ public class HomeFragment extends Fragment {
                 Matcher matcher = p.matcher(cdata);
                 if (matcher.find()) {
                     img = matcher.group(1);
-                    Log.d("hinhanh", img + " ..." + i);
                 }
                 Element element = (Element) nodeList.item(i);
                 title = parser.getValue(element, "title");
@@ -112,14 +114,10 @@ public class HomeFragment extends Fragment {
     private String docNoiDung_Tu_URL(String theUrl) {
         StringBuilder content = new StringBuilder();
         try {
-            // create a url object
             URL url = new URL(theUrl);
-            // create a urlconnection object
             URLConnection urlConnection = url.openConnection();
-            // wrap the urlconnection in a bufferedreader
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String line;
-            // read from the urlconnection via the bufferedreader
             while ((line = bufferedReader.readLine()) != null) {
                 content.append(line + "\n");
             }
@@ -134,7 +132,7 @@ public class HomeFragment extends Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new ReadData().execute("https://vnexpress.net/rss/tin-moi-nhat.rss");
+                new ReadData().execute("https://vnexpress.net/rss/the-thao.rss");
             }
         });
 

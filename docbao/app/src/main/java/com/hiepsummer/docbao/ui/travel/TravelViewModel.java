@@ -1,16 +1,15 @@
-package com.hiepsummer.docbao.ui.share;
+package com.hiepsummer.docbao.ui.travel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ShareViewModel extends ViewModel {
+public class TravelViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ShareViewModel() {
+    public TravelViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is share fragment");
     }
 
     public LiveData<String> getText() {
