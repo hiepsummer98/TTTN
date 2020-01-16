@@ -36,4 +36,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
     implementation 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
+
+
+    compile 'org.jsoup:jsoup:1.10.2'
 }

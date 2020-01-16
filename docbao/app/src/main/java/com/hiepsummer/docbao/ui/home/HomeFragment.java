@@ -2,16 +2,21 @@ package com.hiepsummer.docbao.ui.home;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -40,6 +45,7 @@ public class HomeFragment extends Fragment {
     Adapter adapter;
     ArrayList<New> mangDocBao;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -62,10 +68,10 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... strings) {
-            return docNoiDung_Tu_URL(strings[0]);
-
+            return readContentfromURL(strings[0]);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         protected void onPostExecute(String s) {
             XMLDOMParser parser = new XMLDOMParser();
@@ -81,7 +87,7 @@ public class HomeFragment extends Fragment {
                 String cdata = nodeListdescription.item(i + 1).getTextContent();
                 Pattern p = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
                 Matcher matcher = p.matcher(cdata);
-                if (matcher.find()) {
+                while (matcher.find()) {
                     img = matcher.group(1);
                     Log.d("hinhanh", img + " ..." + i);
                 }
@@ -105,11 +111,17 @@ public class HomeFragment extends Fragment {
                 }
             });
             super.onPostExecute(s);
+            listView.setOnScrollChangeListener(new AbsListView.OnScrollChangeListener() {
+
+                @Override
+                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                }
+            });
 
         }
     }
 
-    private String docNoiDung_Tu_URL(String theUrl) {
+    private String readContentfromURL(String theUrl) {
         StringBuilder content = new StringBuilder();
         try {
             // create a url object
@@ -139,4 +151,5 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
 }
