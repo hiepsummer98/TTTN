@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
         @Override
         protected String doInBackground(String... strings) {
             //đọc từ phần tử đầu tiên của mảng
-             return readContentfromURL(strings[0]);
+            return readContentfromURL(strings[0]);
         }
 
         // trả về kết quả ở onPostExcute
@@ -111,6 +111,7 @@ public class HomeFragment extends Fragment {
                 pubDate = parser.getValue(element, "pubDate");
 
                 mangDocBao.add(new New(title, link, img, pubDate));
+//                mangDocBao.add(new New(title, link, pubDate));
             }
             adapter = new Adapter(getActivity(), android.R.layout.simple_list_item_1, mangDocBao);
             listView.setAdapter(adapter);

@@ -46,12 +46,12 @@ public class Adapter extends ArrayAdapter<New> {
                 txttitle.setText(baibao.title);
                 txtPubdate.setText(baibao.pubDate);
 
-                ImageView imageView = view.findViewById(R.id.imageViewThumb);
-                if (baibao.img.isEmpty()) {
-                    imageView.setImageResource(R.drawable.logo);
-                } else {
-                    Picasso.with(getContext()).load(baibao.img).into(imageView);
-                }
+//                ImageView imageView = view.findViewById(R.id.imageViewThumb);
+//                if (baibao.img.isEmpty()) {
+//                    imageView.setImageResource(R.drawable.logo);
+//                } else {
+//                    Picasso.with(getContext()).load(baibao.img).into(imageView);
+//                }
 
             }
         } catch (Exception e) {

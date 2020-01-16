@@ -13,5 +13,10 @@ public class New {
         this.img = img;
         this.pubDate = pubDate;
     }
+    public New(String title, String link, String img) {
+        this.title = title;
+        this.link = link;
+        this.img = img;
+    }
 
 }
