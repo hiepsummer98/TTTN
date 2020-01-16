@@ -1,6 +1,8 @@
 package com.hiepsummer.docbao.ui.home;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,11 +29,15 @@ import com.hiepsummer.docbao.New;
 import com.hiepsummer.docbao.R;
 import com.hiepsummer.docbao.XMLDOMParser;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -64,32 +71,39 @@ public class HomeFragment extends Fragment {
         runOnUIThread();
     }
 
+    //Asyntask có 3 đối số: đường dẫn(String), quá trình thực hiện(Integer) và kết quả trả về(String)
     class ReadData extends AsyncTask<String, Integer, String> {
 
         @Override
         protected String doInBackground(String... strings) {
-            return readContentfromURL(strings[0]);
+            //đọc từ phần tử đầu tiên của mảng
+             return readContentfromURL(strings[0]);
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.M)
+        // trả về kết quả ở onPostExcute
         @Override
         protected void onPostExecute(String s) {
             XMLDOMParser parser = new XMLDOMParser();
             Document document = parser.getDocument(s);
-            NodeList nodeList = document.getElementsByTagName("item");
             String title = "";
             String link = "";
             String pubDate = "";
-            NodeList nodeListdescription = document.getElementsByTagName("description");
             String img = "";
+
+            NodeList nodeList = document.getElementsByTagName("item");
+            NodeList nodeListdescription = document.getElementsByTagName("description");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 String cdata = nodeListdescription.item(i + 1).getTextContent();
+
+                //đọc ảnh từ thẻ img trong thẻ <![CDATA]/>
                 Pattern p = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
                 Matcher matcher = p.matcher(cdata);
                 while (matcher.find()) {
+                    //tìm được trùng khớp, nhóm vào cùng 1 nhóm
                     img = matcher.group(1);
                     Log.d("hinhanh", img + " ..." + i);
+
                 }
                 Element element = (Element) nodeList.item(i);
                 title = parser.getValue(element, "title");
@@ -111,12 +125,7 @@ public class HomeFragment extends Fragment {
                 }
             });
             super.onPostExecute(s);
-            listView.setOnScrollChangeListener(new AbsListView.OnScrollChangeListener() {
 
-                @Override
-                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-                }
-            });
 
         }
     }
@@ -124,14 +133,14 @@ public class HomeFragment extends Fragment {
     private String readContentfromURL(String theUrl) {
         StringBuilder content = new StringBuilder();
         try {
-            // create a url object
+            // tạo đối tượng url
             URL url = new URL(theUrl);
-            // create a urlconnection object
+            // tạo đường dẫn kết nối đối tượng URL
             URLConnection urlConnection = url.openConnection();
-            // wrap the urlconnection in a bufferedreader
+            // ghi nội dung vào BufferedReader
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             String line;
-            // read from the urlconnection via the bufferedreader
+            // độc nội dung từ url thông qua BufferedReader
             while ((line = bufferedReader.readLine()) != null) {
                 content.append(line + "\n");
             }
@@ -143,6 +152,7 @@ public class HomeFragment extends Fragment {
     }
 
     void runOnUIThread() {
+        // truyền đường dẫn của RSS thông qua phương thức runOnUiThread
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
