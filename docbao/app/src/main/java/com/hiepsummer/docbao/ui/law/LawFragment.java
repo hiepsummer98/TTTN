@@ -1,12 +1,14 @@
 package com.hiepsummer.docbao.ui.law;
 
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -16,22 +18,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.hiepsummer.docbao.Adapter;
+
 import com.hiepsummer.docbao.DetailsActivity;
 import com.hiepsummer.docbao.New;
 import com.hiepsummer.docbao.R;
-import com.hiepsummer.docbao.XMLDOMParser;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LawFragment extends Fragment {
 
@@ -51,49 +49,38 @@ public class LawFragment extends Fragment {
         return root;
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         runOnUIThread();
     }
-
-    class ReadData extends AsyncTask<String, Integer, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            return docNoiDung_Tu_URL(strings[0]);
-
-        }
+    class ReadData extends AsyncTask<String, Void, ArrayList<New>> {
 
         @Override
-        protected void onPostExecute(String s) {
-            XMLDOMParser parser = new XMLDOMParser();
-            Document document = parser.getDocument(s);
-            NodeList nodeList = document.getElementsByTagName("item");
-            String title = "";
-            String link = "";
-            String pubDate = "";
-            NodeList nodeListdescription = document.getElementsByTagName("description");
-            String img = "";
+        protected ArrayList<New> doInBackground(String... strings) {
+            mangDocBao = new ArrayList<>();
+            try {
+                Document document = Jsoup.connect(strings[0]).get();
+                Elements elements = document.select("item");
+                New news = null;
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                String cdata = nodeListdescription.item(i + 1).getTextContent();
-                Pattern p = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
-                Matcher matcher = p.matcher(cdata);
-                if (matcher.find()) {
-                    img = matcher.group(1);
+                for (Element element : elements) {
+                    news = new New();
+                    news.setTitle(element.select("title").text());
+                    news.setImg(Jsoup.parse(element.select("description").text()).select("img").attr("src"));
+                    news.setLink(element.select("link").text());
+                    news.setPubDate(element.select("pubDate").text().replace("+0700", ""));
+
+                    mangDocBao.add(news);
                 }
-                Element element = (Element) nodeList.item(i);
-                title = parser.getValue(element, "title");
-                link = parser.getValue(element, "link");
-                pubDate = parser.getValue(element, "pubDate");
-
-                //mangDocBao.add(new New(title, link, img, pubDate));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            adapter = new Adapter(getActivity(), android.R.layout.simple_list_item_1, mangDocBao);
-            listView.setAdapter(adapter);
-
+            return mangDocBao;
+        }
+        // trả về kết quả ở onPostExcute
+        @Override
+        protected void onPostExecute(ArrayList<New> s) {
             ////action ClickListener
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -105,30 +92,11 @@ public class LawFragment extends Fragment {
             });
             super.onPostExecute(s);
 
+            adapter = new Adapter(getActivity(), R.layout.item, mangDocBao);
+            listView.setAdapter(adapter);
         }
-    }
 
-    private String docNoiDung_Tu_URL(String theUrl) {
-        StringBuilder content = new StringBuilder();
-        try {
-            // create a url object
-            URL url = new URL(theUrl);
-            // create a urlconnection object
-            URLConnection urlConnection = url.openConnection();
-            // wrap the urlconnection in a bufferedreader
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            String line;
-            // read from the urlconnection via the bufferedreader
-            while ((line = bufferedReader.readLine()) != null) {
-                content.append(line + "\n");
-            }
-            bufferedReader.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return content.toString();
     }
-
     void runOnUIThread() {
         getActivity().runOnUiThread(new Runnable() {
             @Override
