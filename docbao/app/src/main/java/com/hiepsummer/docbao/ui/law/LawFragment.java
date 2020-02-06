@@ -35,7 +35,7 @@ public class LawFragment extends Fragment {
 
     private LawViewModel toolsViewModel;
     ListView listView;
-    Adapter adapter;
+    Adapter adapterLaw;
     ArrayList<New> mangDocBao;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,6 +54,7 @@ public class LawFragment extends Fragment {
         super.onCreate(savedInstanceState);
         runOnUIThread();
     }
+
     class ReadData extends AsyncTask<String, Void, ArrayList<New>> {
 
         @Override
@@ -78,6 +79,7 @@ public class LawFragment extends Fragment {
             }
             return mangDocBao;
         }
+
         // trả về kết quả ở onPostExcute
         @Override
         protected void onPostExecute(ArrayList<New> s) {
@@ -92,11 +94,12 @@ public class LawFragment extends Fragment {
             });
             super.onPostExecute(s);
 
-            adapter = new Adapter(getActivity(), R.layout.item, mangDocBao);
-            listView.setAdapter(adapter);
+            adapterLaw = new Adapter(getActivity(), R.layout.item, mangDocBao);
+            listView.setAdapter(adapterLaw);
         }
 
     }
+
     void runOnUIThread() {
         getActivity().runOnUiThread(new Runnable() {
             @Override
