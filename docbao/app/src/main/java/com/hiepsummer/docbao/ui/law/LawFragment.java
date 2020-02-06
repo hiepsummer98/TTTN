@@ -89,7 +89,7 @@ public class LawFragment extends Fragment {
                 link = parser.getValue(element, "link");
                 pubDate = parser.getValue(element, "pubDate");
 
-                mangDocBao.add(new New(title, link, img, pubDate));
+                //mangDocBao.add(new New(title, link, img, pubDate));
             }
             adapter = new Adapter(getActivity(), android.R.layout.simple_list_item_1, mangDocBao);
             listView.setAdapter(adapter);

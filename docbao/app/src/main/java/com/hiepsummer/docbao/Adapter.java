@@ -1,7 +1,6 @@
 package com.hiepsummer.docbao;
 
-import android.content.Context;
-import android.util.Log;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,54 +10,35 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter extends ArrayAdapter<New> {
-    private Context mContext;
-    private ArrayList<New> moviesList;
+    Activity context;
+    int resource;
+    List<New> objects;
 
-    public Adapter(Context context, int resource, ArrayList<New> items) {
-        super(context, resource, items);
-        mContext = context;
-        moviesList = items;
+    public Adapter(Activity context, int resource, List<New> objects) {
+        super(context, resource, objects);
+        this.context = context;
+        this.resource = resource;
+        this.objects = objects;
     }
 
-    @Override
-    public int getCount() {
-        return moviesList.size();
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = this.context.getLayoutInflater();
+        convertView = inflater.inflate(this.resource, null);
+        ImageView ivThumbnail = convertView.findViewById(R.id.imageViewThumb);
+        TextView tvTitle = convertView.findViewById(R.id.textViewTitle);
+        TextView tvPubDate = convertView.findViewById(R.id.textViewPublicDate);
 
-        View view = convertView;
-        if (view == null) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            view = inflater.inflate(R.layout.item, null);
-        }
+        New news = this.objects.get(position);
+        tvTitle.setText(news.getTitle());
+        tvPubDate.setText(news.getPubDate());
+        Picasso.get().load(news.getImg()).into(ivThumbnail);
 
-        try {
-            New baibao = getItem(position);
-            if (baibao != null) {
-                // Anh xa + Gan gia tri
-                TextView txttitle = view.findViewById(R.id.textViewTitle);
-                TextView txtPubdate = view.findViewById(R.id.textViewPublicDate);
-                txttitle.setText(baibao.title);
-                txtPubdate.setText(baibao.pubDate);
-
-//                ImageView imageView = view.findViewById(R.id.imageViewThumb);
-//                if (baibao.img.isEmpty()) {
-//                    imageView.setImageResource(R.drawable.logo);
-//                } else {
-//                    Picasso.with(getContext()).load(baibao.img).into(imageView);
-//                }
-
-            }
-        } catch (Exception e) {
-            Log.e("error ", "error is: " + e);
-        }
-        return view;
+        return convertView;
     }
-
 
 }

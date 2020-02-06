@@ -33,10 +33,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.tomer:fadingtextview:2.5'
 
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-
-    implementation 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
-
-
-    compile 'org.jsoup:jsoup:1.10.2'
+    implementation 'org.jsoup:jsoup:1.10.3'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
