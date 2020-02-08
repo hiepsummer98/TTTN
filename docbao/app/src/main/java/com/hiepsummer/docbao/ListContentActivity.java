@@ -1,5 +1,8 @@
 package com.hiepsummer.docbao;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -75,9 +78,21 @@ public class ListContentActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
+            case R.id.action_information:
+                customDialog();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void customDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Thông tin ứng dụng: \n Phiên bản: 1.2.0\n Sở hữu: J-Marker Developer").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.create().show();
+
     }
 }
