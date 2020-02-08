@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     news.setTitle(element.select("title").text());
                     news.setThumbnail(Jsoup.parse(element.select("description").text()).select("img").attr("src"));
                     news.setLink(element.select("link").text());
-                    news.setPubDate(element.select("pubDate").text());
+                    news.setPubDate(element.select("pubDate").text().replace("+0700", ""));
 
                     arrNews.add(news);
                 }
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<News> news) {
             super.onPostExecute(news);
 
-            adapter = new Adapter(MainActivity.this, R.layout.item, arrNews);
+            adapter = new Adapter(MainActivity.this, R.layout.items, arrNews);
             listView.setAdapter(adapter);
         }
     }
