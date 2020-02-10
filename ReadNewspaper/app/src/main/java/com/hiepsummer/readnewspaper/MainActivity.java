@@ -1,6 +1,7 @@
 package com.hiepsummer.readnewspaper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -22,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listViewTieuDe);
         MyTask myTask = new MyTask();
-        myTask.execute("https://vnexpress.net/rss/so-hoa.rss");
+        myTask.execute("https://vnexpress.net/rss/tin-moi-nhat.rss");
 
     }
 
@@ -56,7 +58,31 @@ public class MainActivity extends AppCompatActivity {
                     news.setTitle(element.select("title").text());
                     news.setThumbnail(Jsoup.parse(element.select("description").text()).select("img").attr("src"));
                     news.setLink(element.select("link").text());
-                    news.setPubDate(element.select("pubDate").text().replace("+0700", ""));
+
+                    news.setPubDate(element.select("pubDate").text().trim()
+                            .replace("+0700", "")
+                            .replace("Sun", "")
+                            .replace("Sat", "")
+                            .replace("Fri", "")
+                            .replace("Thu", "")
+                            .replace("Wed", "")
+                            .replace("Tue", "")
+                            .replace("Mon", "")
+                            .replace(", ", "")
+
+                            .replace(" Jan ", "/01/")
+                            .replace(" Feb ", "/02/")
+                            .replace(" Mar ", "/03/")
+                            .replace(" Apr ", "/04/")
+                            .replace(" May ", "/05/")
+                            .replace(" June ", "/06/")
+                            .replace(" July ", "/07/")
+                            .replace(" Aug ", "/08/")
+                            .replace(" Sept ", "/09/")
+                            .replace(" Oct ", "/10/")
+                            .replace(" Nov ", "/11/")
+                            .replace(" Dec ", "/12/")
+                    );
 
                     arrNews.add(news);
                 }

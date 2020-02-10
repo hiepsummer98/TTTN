@@ -33,16 +33,29 @@ public class Adapter extends ArrayAdapter<News> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         LayoutInflater inflater = this.context.getLayoutInflater();
         convertView = inflater.inflate(this.resource, null);
-        ImageView ivThumbnail = convertView.findViewById(R.id.iv_thumbnail);
-        TextView tvTitle = convertView.findViewById(R.id.tv_title);
-        TextView tvPubDate = convertView.findViewById(R.id.tv_pubDate);
 
-        News news = this.objects.get(position);
-        tvTitle.setText(Html.fromHtml(news.getTitle()));
-        tvPubDate.setText(news.getPubDate());
-        Picasso.get().load(news.getThumbnail()).into(ivThumbnail);
+        try {
+            News news = getItem(position);
+            if (news != null) {
+                ImageView ivThumbnail = convertView.findViewById(R.id.iv_thumbnail);
+                TextView tvTitle = convertView.findViewById(R.id.tv_title);
+                TextView tvPubDate = convertView.findViewById(R.id.tv_pubDate);
+
+                tvTitle.setText(Html.fromHtml(news.getTitle()));
+                tvPubDate.setText(news.getPubDate());
+                if (news.getThumbnail().isEmpty()) {
+                    ivThumbnail.setImageResource(R.drawable.ic_launcher_background);
+                } else {
+                    Picasso.get().load(news.getThumbnail()).into(ivThumbnail);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return convertView;
     }

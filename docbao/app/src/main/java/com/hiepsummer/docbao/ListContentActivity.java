@@ -2,16 +2,19 @@ package com.hiepsummer.docbao;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,6 +29,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ListContentActivity extends AppCompatActivity {
@@ -36,6 +40,7 @@ public class ListContentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_content);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -60,6 +65,7 @@ public class ListContentActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,7 +93,8 @@ public class ListContentActivity extends AppCompatActivity {
 
     private void customDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Thông tin ứng dụng: \n Phiên bản: 1.2.0\n Sở hữu: J-Marker Developer").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setIcon(R.drawable.logo);
+        builder.setMessage("INFORMATION \nVersion: 1.2.0-beta\nLicense: J-Marker Developer").setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

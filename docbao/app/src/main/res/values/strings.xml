@@ -9,7 +9,7 @@
     <string name="action_information">Thông tin</string>
 
     <string name="menu_the_gioi">Thế Giới</string>
-    <string name="menu_trang_chu">Trang Chủ</string>
+    <string name="menu_trang_chu">Tin Mới Nhất</string>
     <string name="menu_kinh_doanh">Kinh Doanh</string>
     <string name="menu_phap_luat">Pháp Luật</string>
     <string name="menu_the_thao">Thể Thao</string>
@@ -18,8 +18,8 @@
     <string name="menu_cuoi">Cười</string>
 
     <string-array name="text">
-        <item>VNEXPRESS</item>
-        <item>Cập Nhật Cùng Bạn Đọc</item>
+        <item>Ứng Dụng Đọc Báo VN.News</item>
+        <item>Cập Nhật Tin Tức Cùng Bạn Đọc</item>
     </string-array>
 
 </resources>

@@ -42,7 +42,7 @@
         android:id="@+id/fadingTextview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:fontFamily=""
         android:gravity="center"
         android:textColor="#F8F4F4"
@@ -50,7 +50,7 @@
         android:textStyle="bold"
         app:texts="@array/text"
         app:timeout="2050"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp" tools:targetApi="jelly_bean"/>
 
 
 </LinearLayout>
