@@ -47,6 +47,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="80"
                     android:gravity="center_vertical"
+                    android:maxLines="3"
                     android:text="TextView"
                     android:textColor="@android:color/background_dark"
                     android:textSize="15sp"
