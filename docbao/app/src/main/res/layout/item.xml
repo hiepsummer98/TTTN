@@ -30,13 +30,16 @@
                 android:id="@+id/imageViewThumb"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="33"
+                android:layout_weight="15"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:scaleType="fitCenter"
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="67"
+                android:layout_weight="85"
                 android:orientation="vertical"
                 android:weightSum="100">
 

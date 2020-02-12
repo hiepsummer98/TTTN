@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/side_nav_bar"
+    android:background="#34FF0000"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -14,10 +14,9 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:cardPreventCornerOverlap="false"
-        android:background="@android:color/white"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp">
 
@@ -45,8 +44,8 @@
         android:layout_marginTop="5dp"
         android:fontFamily=""
         android:gravity="center"
-        android:textColor="#F8F4F4"
-        android:textSize="23sp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:texts="@array/text"
         app:timeout="2050"

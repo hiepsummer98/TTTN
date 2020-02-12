@@ -18,8 +18,8 @@
     <string name="menu_cuoi">Cười</string>
 
     <string-array name="text">
-        <item>Ứng Dụng Đọc Báo VN.News</item>
-        <item>Cập Nhật Tin Tức Cùng Bạn Đọc</item>
+        <item>VietNamNews</item>
+        <item>Cập Nhật Tin Tức Cùng Bạn</item>
     </string-array>
 
 </resources>
