@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao;
+package com.hiepsummer.docbao.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.hiepsummer.docbao.R;
 
 public class DetailsActivity extends AppCompatActivity {
 

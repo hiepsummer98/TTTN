@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao.ui.world;
+package com.hiepsummer.docbao.fragment.world;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.hiepsummer.docbao.Adapter;
-import com.hiepsummer.docbao.New;
-import com.hiepsummer.docbao.DetailsActivity;
+import com.hiepsummer.docbao.adapter.Adapter;
+import com.hiepsummer.docbao.data.model.New;
+import com.hiepsummer.docbao.activity.DetailsActivity;
 import com.hiepsummer.docbao.R;
 
 import org.jsoup.Jsoup;

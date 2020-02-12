@@ -1,11 +1,14 @@
-package com.hiepsummer.docbao.ui.sport;
+package com.hiepsummer.docbao.fragment.law;
+
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -14,9 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.hiepsummer.docbao.Adapter;
-import com.hiepsummer.docbao.DetailsActivity;
-import com.hiepsummer.docbao.New;
+import com.hiepsummer.docbao.adapter.Adapter;
+
+import com.hiepsummer.docbao.activity.DetailsActivity;
+import com.hiepsummer.docbao.data.model.New;
 import com.hiepsummer.docbao.R;
 
 import org.jsoup.Jsoup;
@@ -27,21 +31,20 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SportFragment extends Fragment {
+public class LawFragment extends Fragment {
 
-    private SportViewModel sportViewModel;
+    private LawViewModel toolsViewModel;
     ListView listView;
-    Adapter adapter;
+    Adapter adapterLaw;
     ArrayList<New> mangDocBao;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sportViewModel =
-                ViewModelProviders.of(this).get(SportViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_thethao, container, false);
+        toolsViewModel =
+                ViewModelProviders.of(this).get(LawViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_law, container, false);
 
-        listView = root.findViewById(R.id.listViewTheThao);
+        listView = root.findViewById(R.id.listViewLaw);
         mangDocBao = new ArrayList<New>();
         return root;
     }
@@ -91,8 +94,8 @@ public class SportFragment extends Fragment {
             });
             super.onPostExecute(s);
 
-            adapter = new Adapter(getActivity(), R.layout.item, mangDocBao);
-            listView.setAdapter(adapter);
+            adapterLaw = new Adapter(getActivity(), R.layout.item, mangDocBao);
+            listView.setAdapter(adapterLaw);
         }
 
     }
@@ -101,7 +104,7 @@ public class SportFragment extends Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new ReadData().execute("https://vnexpress.net/rss/the-thao.rss");
+                new ReadData().execute("https://vnexpress.net/rss/phap-luat.rss");
             }
         });
 

@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao;
+package com.hiepsummer.docbao.activity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -21,6 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.hiepsummer.docbao.R;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 

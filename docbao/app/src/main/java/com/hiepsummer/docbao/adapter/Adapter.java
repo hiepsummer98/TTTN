@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao;
+package com.hiepsummer.docbao.adapter;
 
 import android.app.Activity;
 import android.text.Html;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.hiepsummer.docbao.data.model.New;
+import com.hiepsummer.docbao.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

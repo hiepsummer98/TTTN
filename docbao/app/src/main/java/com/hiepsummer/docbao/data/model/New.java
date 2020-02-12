@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao;
+package com.hiepsummer.docbao.data.model;
 
 public class New {
     public String title;

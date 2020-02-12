@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao;
+package com.hiepsummer.docbao.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +9,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
-import java.util.logging.Handler;
+import com.hiepsummer.docbao.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             try {
                 Thread.sleep(5000);
-                Intent intent = new Intent(MainActivity.this, ListContentActivity.class);
+                Intent intent = new Intent(MainActivity.this, OptionWebsiteActivity.class);
                 startActivity(intent);
 
                 finish();

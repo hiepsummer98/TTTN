@@ -7,37 +7,37 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.hiepsummer.docbao.ui.home.HomeFragment"
+        android:name="com.hiepsummer.docbao.fragment.home.HomeFragment"
         android:label="@string/menu_trang_chu"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_thegioi"
-        android:name="com.hiepsummer.docbao.ui.world.WorldFragment"
+        android:name="com.hiepsummer.docbao.fragment.world.WorldFragment"
         android:label="@string/menu_the_gioi"
         tools:layout="@layout/fragment_world" />
 
     <fragment
         android:id="@+id/nav_kinhdoanh"
-        android:name="com.hiepsummer.docbao.ui.sale.SaleFragment"
+        android:name="com.hiepsummer.docbao.fragment.sale.SaleFragment"
         android:label="@string/menu_kinh_doanh"
         tools:layout="@layout/fragment_sale" />
 
     <fragment
         android:id="@+id/nav_phapluat"
-        android:name="com.hiepsummer.docbao.ui.law.LawFragment"
+        android:name="com.hiepsummer.docbao.fragment.law.LawFragment"
         android:label="@string/menu_phap_luat"
         tools:layout="@layout/fragment_law" />
 
     <fragment
         android:id="@+id/nav_thethao"
-        android:name="com.hiepsummer.docbao.ui.sport.SportFragment"
+        android:name="com.hiepsummer.docbao.fragment.sport.SportFragment"
         android:label="@string/menu_the_thao"
         tools:layout="@layout/fragment_thethao" />
 
     <fragment
         android:id="@+id/nav_dulich"
-        android:name="com.hiepsummer.docbao.ui.travel.TravelFragment"
+        android:name="com.hiepsummer.docbao.fragment.travel.TravelFragment"
         android:label="@string/menu_du_lich"
         tools:layout="@layout/fragment_dulich" />
 

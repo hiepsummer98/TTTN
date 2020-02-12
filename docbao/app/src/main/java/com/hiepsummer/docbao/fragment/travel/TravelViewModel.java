@@ -1,14 +1,14 @@
-package com.hiepsummer.docbao.ui.law;
+package com.hiepsummer.docbao.fragment.travel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class LawViewModel extends ViewModel {
+public class TravelViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public LawViewModel() {
+    public TravelViewModel() {
         mText = new MutableLiveData<>();
     }
 

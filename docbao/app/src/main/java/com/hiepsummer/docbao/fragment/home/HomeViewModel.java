@@ -1,4 +1,4 @@
-package com.hiepsummer.docbao.ui.home;
+package com.hiepsummer.docbao.fragment.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

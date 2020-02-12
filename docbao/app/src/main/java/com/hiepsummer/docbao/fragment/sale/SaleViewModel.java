@@ -1,14 +1,14 @@
-package com.hiepsummer.docbao.ui.travel;
+package com.hiepsummer.docbao.fragment.sale;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class TravelViewModel extends ViewModel {
+public class SaleViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public TravelViewModel() {
+    public SaleViewModel() {
         mText = new MutableLiveData<>();
     }
 

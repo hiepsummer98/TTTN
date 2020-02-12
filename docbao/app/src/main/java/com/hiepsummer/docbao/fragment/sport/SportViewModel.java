@@ -1,16 +1,15 @@
-package com.hiepsummer.docbao.ui.world;
+package com.hiepsummer.docbao.fragment.sport;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class WorldViewModel extends ViewModel {
+public class SportViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public WorldViewModel() {
+    public SportViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {
