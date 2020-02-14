@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.hiepsummer.docbao.R;
 
@@ -19,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!checkConnect(MainActivity.this)) builder(MainActivity.this).show();
+//        // Add animation for ImageView Intro
+//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.animation);
+//        findViewById(R.id.imageViewIntro).startAnimation(animation);
+
+        if (!checkConnect(MainActivity.this)) builder(MainActivity.this).show();
         else {
             setContentView(R.layout.activity_main);
             Thread th = new Thread(wait);

@@ -72,7 +72,11 @@ public class LawFragment extends Fragment {
                     news.setLink(element.select("link").text());
                     news.setPubDate(element.select("pubDate").text().replace("+0700", ""));
 
-                    mangDocBao.add(news);
+                    if (news.img.isEmpty() || news.title.isEmpty() || news.link.isEmpty() || news.pubDate.isEmpty()) {
+                    } else {
+                        mangDocBao.add(news);
+
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -22,11 +22,11 @@ public class OptionWebsiteActivity extends AppCompatActivity {
     }
 
     private void animation() {
-        findViewById(R.id.tv_VietNamnet).setSelected(true);
-        findViewById(R.id.tv_DanViet).setSelected(true);
-        findViewById(R.id.tv_DanTri).setSelected(true);
-        findViewById(R.id.tv_VNEX).setSelected(true);
-        findViewById(R.id.tv_24H).setSelected(true);
+//        findViewById(R.id.tv_VietNamnet).setSelected(true);
+//        findViewById(R.id.tv_DanViet).setSelected(true);
+//        findViewById(R.id.tv_DanTri).setSelected(true);
+//        findViewById(R.id.tv_VNEX).setSelected(true);
+//        findViewById(R.id.tv_24H).setSelected(true);
     }
 
     private void onClick() {

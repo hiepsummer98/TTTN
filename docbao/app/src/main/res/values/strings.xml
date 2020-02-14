@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">docbao</string>
+    <string name="app_name">VnNews</string>
     <string name="title_activity_list_content">ListContentActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">VNEXPRESS</string>
+    <string name="nav_header_title">VietNamNews</string>
     <string name="nav_header_subtitle">Báo tiếng Việt nhiều người xem nhất</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_information">Thông tin</string>
@@ -18,7 +18,7 @@
     <string name="menu_cuoi">Cười</string>
 
     <string-array name="text">
-        <item>VietNamNews</item>
+        <item>Ứng Dụng VietNamNews</item>
         <item>Cập Nhật Tin Tức Cùng Bạn</item>
     </string-array>
 

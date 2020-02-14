@@ -1,27 +1,26 @@
 package com.hiepsummer.docbao.fragment.home;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.hiepsummer.docbao.adapter.Adapter;
-import com.hiepsummer.docbao.activity.DetailsActivity;
-import com.hiepsummer.docbao.data.model.New;
 import com.hiepsummer.docbao.R;
+import com.hiepsummer.docbao.adapter.AdapterRc;
+import com.hiepsummer.docbao.data.model.New;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -30,8 +29,8 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    ListView listView;
-    Adapter adapter;
+    RecyclerView rc_Data;
+    AdapterRc adapter;
     ArrayList<New> mangDocBao;
 
 
@@ -42,8 +41,9 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        listView = root.findViewById(R.id.listViewHome);
-        mangDocBao = new ArrayList<New>();
+        rc_Data = root.findViewById(R.id.rc_Home);
+        rc_Data.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mangDocBao = new ArrayList<>();
         return root;
     }
 
@@ -92,8 +92,10 @@ public class HomeFragment extends Fragment {
                             .replace(" Nov ", "/11/")
                             .replace(" Dec ", "/12/")
                     );
-
-                    mangDocBao.add(news);
+                    if (news.img.isEmpty() || news.title.isEmpty() || news.link.isEmpty() || news.pubDate.isEmpty()) {
+                    } else {
+                        mangDocBao.add(news);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -105,18 +107,16 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<New> s) {
             ////action ClickListener
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                    intent.putExtra("link", mangDocBao.get(position).link);
-                    startActivity(intent);
-                }
-            });
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                    Intent intent = new Intent(getActivity(), DetailsActivity.class);
+//                    intent.putExtra("link", mangDocBao.get(position).link);
+//                    startActivity(intent);
+//                }
+//            });
             super.onPostExecute(s);
-
-            adapter = new Adapter(getActivity(), R.layout.item, mangDocBao);
-            listView.setAdapter(adapter);
+            rc_Data.setAdapter(new AdapterRc(getActivity(), mangDocBao));
         }
 
     }

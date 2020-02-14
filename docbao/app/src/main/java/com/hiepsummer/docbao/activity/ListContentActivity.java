@@ -9,7 +9,9 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.text.Html;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -65,6 +67,12 @@ public class ListContentActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        // Add HeaderView into Drawer
+        View headerView = LayoutInflater.from(this).inflate(R.layout.nav_header_list_content, navigationView, false);
+        navigationView.addHeaderView(headerView);
+        TextView tv = headerView.findViewById(R.id.textViewIntro);
+        tv.setSelected(true);
+
     }
 
 
@@ -94,12 +102,13 @@ public class ListContentActivity extends AppCompatActivity {
 
     private void customDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.drawable.logo);
-        builder.setMessage("INFORMATION \nVersion: 1.2.0-beta\nLicense: J-Marker Developer").setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
+        builder.setTitle(Html.fromHtml("<font color='#00bfa5'>VietNamNews</font>"));
+        builder.setMessage(Html.fromHtml("<font color='#00bfa5'>Phiên bản ứng dụng: 1.2.0-beta</font>"))
+                .setPositiveButton(Html.fromHtml("<font color='#00bfa5'>OK</font>"), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
         builder.create().show();
 
     }
