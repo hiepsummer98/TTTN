@@ -1,6 +1,7 @@
 package com.hiepsummer.docbao.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hiepsummer.docbao.R;
+import com.hiepsummer.docbao.activity.DetailsActivity;
 import com.hiepsummer.docbao.data.model.New;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +49,21 @@ public class AdapterRc extends RecyclerView.Adapter<AdapterRc.ViewHolder> {
             Picasso.get().load(news.getImg()).into(holder.img);
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (news.link != null) {
+                    try {
+                        Intent intent = new Intent(context, DetailsActivity.class);
+                        intent.putExtra("link", news.link);
+                        context.startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
     }
 
     @Override
@@ -60,18 +77,12 @@ public class AdapterRc extends RecyclerView.Adapter<AdapterRc.ViewHolder> {
         public TextView pubDate;
         public ImageView img;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.textViewTitle);
             pubDate = itemView.findViewById(R.id.textViewPublicDate);
             img = itemView.findViewById(R.id.imageViewThumb);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                }
-            });
 
         }
     }

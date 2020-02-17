@@ -1,16 +1,15 @@
 package com.hiepsummer.docbao.activity;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.text.Html;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hiepsummer.docbao.R;
 
@@ -20,10 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        // Add animation for ImageView Intro
-//        Animation animation = AnimationUtils.loadAnimation(this, R.anim.animation);
-//        findViewById(R.id.imageViewIntro).startAnimation(animation);
 
         if (!checkConnect(MainActivity.this)) builder(MainActivity.this).show();
         else {
@@ -38,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             try {
                 Thread.sleep(5000);
-                Intent intent = new Intent(MainActivity.this, OptionWebsiteActivity.class);
+                Intent intent = new Intent(MainActivity.this, ListContentActivity.class);
                 startActivity(intent);
 
                 finish();
@@ -65,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
     public AlertDialog.Builder builder(Context c) {
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        builder.setTitle("Không có kết nối");
-        builder.setMessage("Vui lòng kiểm tra kết nối Internet để tiếp tục!");
+        builder.setTitle(Html.fromHtml("<font color='#00bfa5'>Lỗi kết nối!</font>"));
+        builder.setMessage(Html.fromHtml("<font color='#00bfa5'>Vui lòng kiểm tra kết nối Internet để tiếp tục!</font>"));
 
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(Html.fromHtml("<font color='#00bfa5'>ok</font>"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
