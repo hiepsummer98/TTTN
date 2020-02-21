@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="5dp"
         app:cardUseCompatPadding="true"
         tools:ignore="MissingConstraints">
 
@@ -17,24 +17,28 @@
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:orientation="horizontal"
-            android:padding="2dp"
+            android:padding="1dp"
             android:weightSum="100"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/imageViewThumb"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="15"
-                android:cropToPadding="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@mipmap/ic_launcher" />
 
+                app:civ_border_width="1dp"
+                app:civ_shadow="true"
+                app:civ_shadow_radius="2dp"
+                app:srcCompat="@mipmap/ic_launcher" />
+<!--            app:civ_shadow_color="@color/colorPrimary"
+                app:civ_border_color="@color/colorPrimary"
+-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="85"
+                android:layout_weight="100"
                 android:orientation="vertical"
                 android:weightSum="100">
 
@@ -44,9 +48,8 @@
                     android:layout_height="0dp"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="80"
+                    android:maxLines="3"
                     android:gravity="center_vertical"
-                    android:maxLines="2"
-                    android:textStyle="bold"
                     android:text="TextView"
                     android:textColor="@android:color/background_dark"
                     android:textSize="15sp"
@@ -66,7 +69,13 @@
                     app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
 
             </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_star_border_golden_28dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content">
 
+            </ImageView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
