@@ -1,22 +1,18 @@
 package com.hiepsummer.docbao.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 import android.text.Html;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,17 +38,11 @@ public class ListContentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_content);
+        setupMeoBottom();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Display Bottomsheet to choose more fields", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -78,9 +67,8 @@ public class ListContentActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.list_content, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -93,9 +81,10 @@ public class ListContentActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_information:
-                customDialog();
-                return true;
+            case R.id.action_search:
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -111,5 +100,29 @@ public class ListContentActivity extends AppCompatActivity {
                 });
         builder.create().show();
 
+    }
+
+    private void setupMeoBottom() {
+        MeowBottomNavigation meo = findViewById(R.id.bottomNavigation);
+
+        meo.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
+        meo.add(new MeowBottomNavigation.Model(2, R.drawable.ic_account));
+        meo.add(new MeowBottomNavigation.Model(3, R.drawable.ic_explore));
+        meo.add(new MeowBottomNavigation.Model(4, R.drawable.ic_message));
+        meo.add(new MeowBottomNavigation.Model(5, R.drawable.ic_notification));
+
+        meo.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
+            @Override
+            public void onClickItem(MeowBottomNavigation.Model item) {
+                Toast.makeText(getApplicationContext(), "" + item.getId(), Toast.LENGTH_LONG).show();
+            }
+        });
+        meo.setOnShowListener(new MeowBottomNavigation.ShowListener() {
+            @Override
+            public void onShowItem(MeowBottomNavigation.Model item) {
+                Fragment select_fragment = null;
+
+            }
+        });
     }
 }

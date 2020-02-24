@@ -35,7 +35,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:texts="@array/text"
-        app:timeout="2050"
+        app:timeout="1975"
         tools:layout_editor_absoluteX="0dp" tools:targetApi="jelly_bean"/>
 
 

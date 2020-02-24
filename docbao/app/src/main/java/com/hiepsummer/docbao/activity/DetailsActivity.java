@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -26,6 +27,14 @@ public class DetailsActivity extends AppCompatActivity {
         String duonglink = intent.getStringExtra("link");
         webView.loadUrl(duonglink);
         webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().getBuiltInZoomControls();
+        webView.getSettings().setAllowContentAccess(true);
+        webView.getSettings().setAppCacheMaxSize(Long.MAX_VALUE);
+        webView.getSettings().setAppCacheEnabled(true);
+        webView.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setCacheMode( WebSettings.LOAD_DEFAULT );
 
         //action for Actionbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -47,4 +47,7 @@ dependencies {
     })
 
     implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
+    implementation 'com.android.support:design:29.0.0'
+    implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
 }
