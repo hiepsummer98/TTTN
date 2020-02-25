@@ -1,9 +1,12 @@
 package com.hiepsummer.docbao.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -34,7 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
         webView.getSettings().setAppCacheEnabled(true);
         webView.getSettings().setAppCachePath(getApplicationContext().getCacheDir().getAbsolutePath());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setCacheMode( WebSettings.LOAD_DEFAULT );
+        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
         //action for Actionbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,4 +51,24 @@ public class DetailsActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_in_detail, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.save:
+                break;
+            case R.id.share:
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
