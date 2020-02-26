@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:mbn_backgroundBottomColor="#ffffff"
         app:mbn_circleColor="#ffffff"
         app:mbn_countBackgroundColor="#ff6f00"
